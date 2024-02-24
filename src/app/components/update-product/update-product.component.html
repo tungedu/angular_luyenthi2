@@ -2,7 +2,11 @@
   <h2 class="text-center my-4 text-4xl font-extrabold text-blue-500">
     Update product
   </h2>
-  <form class="mx-auto mt-4 ml-4">
+  <form
+    [formGroup]="updateForm"
+    (submit)="handleSubmit($event)"
+    class="mx-auto mt-4 ml-4"
+  >
     <div class="mb-5 grid grid-cols-[50%_40%] gap-2">
       <div class="">
         <label
@@ -11,11 +15,14 @@
           >Name</label
         >
         <input
+          [(ngModel)]="editProduct.name"
+          name="name"
           type="email"
           id="email"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Name..."
           required
+          formControlName="name"
         />
       </div>
       <div class="">
@@ -25,11 +32,14 @@
           >Quantity</label
         >
         <input
+          [(ngModel)]="editProduct.quantity"
+          name="quantity"
           type="number"
           id="email"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Quantity..."
           required
+          formControlName="quantity"
         />
       </div>
     </div>
@@ -40,10 +50,13 @@
           >Image</label
         >
         <input
+          [(ngModel)]="editProduct.image"
+          name="image"
           type="text"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Image link..."
           required
+          formControlName="image"
         />
       </div>
       <div class="">
@@ -53,11 +66,14 @@
           >Price</label
         >
         <input
+          [(ngModel)]="editProduct.price"
+          name="price"
           type="number"
           id="price"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Price..."
           required
+          formControlName="price"
         />
       </div>
     </div>
@@ -68,11 +84,14 @@
         >Description</label
       >
       <textarea
+        [(ngModel)]="editProduct.description"
+        name="description"
         id="description"
         rows="4"
         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         placeholder="Description..."
         required
+        formControlName="description"
       ></textarea>
     </div>
     <button

@@ -2,7 +2,11 @@
   <h2 class="text-center my-4 text-4xl font-extrabold text-blue-500">
     Add product
   </h2>
-  <form class="mx-auto mt-4 ml-4">
+  <form
+    [formGroup]="createForm"
+    (submit)="handleSubmit($event)"
+    class="mx-auto mt-4 ml-4"
+  >
     <div class="mb-5 grid grid-cols-[50%_40%] gap-2">
       <div class="">
         <label
@@ -16,7 +20,27 @@
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Name..."
           required
+          name="name"
+          formControlName="name"
         />
+        <div
+          *ngIf="
+            (createForm['controls']['name'].dirty &&
+              createForm['controls']['name'].errors) ||
+            (isError && createForm['controls']['name'].errors)
+          "
+        >
+          <small
+            *ngIf="createForm['controls']['name'].errors['required']"
+            class="text-red-600"
+            >*Name is required</small
+          >
+          <small
+            *ngIf="createForm['controls']['name'].errors['minlength']"
+            class="text-red-600"
+            >*Name toi thieu 3 ki tu</small
+          >
+        </div>
       </div>
       <div class="">
         <label
@@ -30,6 +54,7 @@
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Quantity..."
           required
+          formControlName="quantity"
         />
       </div>
     </div>
@@ -44,6 +69,7 @@
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Image link..."
           required
+          formControlName="image"
         />
       </div>
       <div class="">
@@ -58,6 +84,7 @@
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Price..."
           required
+          formControlName="price"
         />
       </div>
     </div>
@@ -73,6 +100,7 @@
         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         placeholder="Description..."
         required
+        formControlName="description"
       ></textarea>
     </div>
     <button
